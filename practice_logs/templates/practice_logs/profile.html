@@ -1,0 +1,36 @@
+{% include 'practice_logs/main.html' %}
+
+<h2>Profile</h2>
+<h5>Welcome </h5>
+{{ request.user }}
+
+<body>
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card bg-dark text-center text-white  mb-3" id="total-skills">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Total Skills</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{skills.count}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<h4>Your Skills</h4>
+	<div class="card card-body">
+		<table class="table table-med">
+		  {% for skill in skills %}
+			  <tr>
+			    <td>{{ skill.name }}</td>
+			    <td>{{ skill_entry }}</td>
+			    <td><a class="btn btn-sm btn-danger" href="{% url 'delete_skill' skill.id %}">Delete</a></td>
+			  </tr>
+		  {% endfor %}
+		</table>
+	</div>
+</body>

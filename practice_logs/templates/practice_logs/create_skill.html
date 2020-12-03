@@ -1,0 +1,11 @@
+{% include 'practice_logs/main.html' %}
+
+{% block content %}
+<h2>Start a new skill</h2>
+<form action="" method="POST">
+	{% csrf_token %}
+	{{form}}
+	<input type="submit" name="Submit">
+</form>
+{% endblock %}
+
