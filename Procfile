@@ -1,1 +1,1 @@
-web: gunicorn practice_log --log-file -
+web: gunicorn practice_log:practice_logs --log-file -
