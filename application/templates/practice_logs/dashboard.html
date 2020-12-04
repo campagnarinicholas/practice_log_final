@@ -1,0 +1,133 @@
+{% include 'practice_logs/main.html' %}
+{% load static %}
+
+<h3>Dashboard</h3>
+
+<body>
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card bg-info text-center text-white  mb-3" id="total-skills">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Average Daily Practice Hours This Week</h5>
+			  	</div> 
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{ avg_hours_weekly }}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card bg-dark text-center text-white  mb-3" id="orders-delivered">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Hours Practiced This Week</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{ total_skill_hours_weekly }}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card bg-info text-center text-white  mb-3" id="orders-delivered">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Average Session Length (Hours)</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{ avg_hours }}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	{% block content %}
+		<div class="row">
+			<div class ="col-md-12">
+				<h5>Practice Log</h5>
+				<hr>
+				<div class ="card card-body">
+					<a class="btn btn-info  btn-sm btn-block" href="{% url 'create_skill' %}">Make a New Skill
+					</a>
+					<a class="btn btn-info  btn-sm btn-block" href="{% url 'skill_entry' %}">Add a Practice Session
+					</a>
+					<a class="btn btn-sm btn-danger btn-block" href="{% url 'delete_all' %}">Clear Sessions
+					</a>
+					<table class ="table table-sm">
+						<tr>
+							<th>Skill</th>
+							<th>Hours Practiced</th>
+							<th>Date Added</th>
+							<th>Description</th>
+						</tr>
+
+						{% for item in skill_entry %}
+							<tr>
+								<td>{{item.skill}}</td>
+								<td>{{item.hours_practiced}}</td>
+								<td>{{item.date_added}}</td>
+								<td>{{item.description}}</td>
+
+							</tr>
+						{% endfor %}
+
+					</table>
+				</div>
+
+
+	<h4>Skill Breakdown</h4>
+	<hr>
+	<div class="row">
+		<div class="col">
+			<div class="col-md">
+				<div class="card bg-dark text-center text-white  mb-3" id="total-skills">
+				  	<div class="card-header">
+				  		<h5 class="card-title">Total Skills</h5>
+				  	</div>
+				  	<div class="card-body">
+				    	<h3 class="card-title">{{skills.count}}</h3>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<div class="col-md">
+				<div class="card bg-info text-center text-white  mb-3" id="total-skills">
+				  	<div class="card-header">
+				  		<h5 class="card-title">Favorite Skill</h5>
+				  	</div>
+				  	<div class="card-body">
+				    	<h3 class="card-title">{{ max_skill }}</h3>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<div class="card card-body">
+			<table class="table table-med">
+				<tr>
+					<th>Skill</th>
+					<th>Hours Practiced This Week</th>
+					<th>Delete</th>
+				</tr>
+			  {% for skill, skill_hours in skill_hours_dict.items %}
+				  <tr>
+				    <td>{{ skill }}</td>
+				    <td>{{ skill_hours }}</td>
+				    <td><a class="btn btn-sm btn-danger" href="{% url 'delete_skill' skill.id %}">Delete</a></td>
+				  </tr>
+			  {% endfor %}
+
+			</table>
+		</div>
+	</div>
+</body>
+
+{% endblock %}
