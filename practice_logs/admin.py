@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import Skill, Profile, Skill_Entry
 
 admin.site.register(Skill)
