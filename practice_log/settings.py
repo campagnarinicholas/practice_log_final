@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'yk9u6(fsupveh2dgk24#icc4_ut)^!pf)5#b0*^3cy3d_w%v%a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['https://campagnari-practice-log.herokuapp.com', '127.0.0.1']
 
